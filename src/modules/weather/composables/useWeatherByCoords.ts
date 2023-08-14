@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { WEATHER_API_KEY, WEATHER_API_URL_BY_ID } from '../api';
+import { fetchData, weatherApi } from '../api';
 import { ref } from 'vue';
 import { WeatherFullInfo } from '../types/weather';
 
@@ -9,15 +8,16 @@ export const useWeatherByCoords = () => {
   const weatherData = ref<WeatherFullInfo | null>(null);
 
   const fetchWeatherData = async (lat: number, lon: number) => {
-    const url = `${WEATHER_API_URL_BY_ID}?units=metric&lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`;
-
     try {
       isWeatherLoading.value = true;
-      const { data } = await axios.get<WeatherFullInfo>(url);
+      const { data } = await fetchData<WeatherFullInfo>(
+        weatherApi.withCoords(lat, lon)
+      );
       weatherData.value = data;
+    } catch (err) {
+      error.value = (err as Error).message;
+    } finally {
       isWeatherLoading.value = false;
-    } catch (e) {
-      error.value = (e as Error).message;
     }
   };
 

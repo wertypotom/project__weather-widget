@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { WEATHER_API_KEY, WEATHER_API_URL_BY_CITY } from '../api';
+import { fetchData, weatherApi } from '../api';
 import { ref } from 'vue';
 import { City } from '../types/cities';
 
@@ -11,15 +10,12 @@ export const useFetchCities = () => {
   const fetchCitiesData = async (city: string) => {
     if (!city) return (searchedCities.value = null);
 
-    const url = `${WEATHER_API_URL_BY_CITY}?q=${city}&limit=5&appid=${WEATHER_API_KEY}`;
-
     try {
       areCitiesLoading.value = true;
-      const { data } = await axios.get<City[]>(url);
+      const { data } = await fetchData<City[]>(weatherApi.withCity(city));
       searchedCities.value = data;
-    } catch (e) {
-      error.value = (e as Error).message;
-      searchedCities.value = null;
+    } catch (err) {
+      error.value = (err as Error).message;
     } finally {
       areCitiesLoading.value = false;
     }
