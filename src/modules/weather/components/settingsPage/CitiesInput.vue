@@ -7,7 +7,7 @@
         :value="citySearch"
       />
       <img
-        src="./../../assets/icons/close-black.svg"
+        src="@/assets/weather/icons/close-black.svg"
         alt="input icon"
         @click="handleClearSearch"
       />

@@ -3,7 +3,7 @@
     <img
       alt="weather"
       class="main-info-icon"
-      :src="getImgUrl(`${weatherData.weather[0].icon}`)"
+      :src="getImgUrl(weatherData.weather[0].icon)"
     />
     <div class="content-wrapper">
       <span class="content-temperature">

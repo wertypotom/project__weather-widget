@@ -8,7 +8,7 @@
         {{ weatherData.name }}
       </div>
       <img
-        src="./../../assets/icons/gear.svg"
+        src="@/assets/weather/icons/gear.svg"
         alt="open settings menu"
         @click="$emit('handleToggleSettings')"
       />
@@ -20,7 +20,7 @@
   <div v-if="!!weatherData" class="main-info-wrapper">
     <img
       v-if="cachedWeatherData.length > 1"
-      src="./../../assets/icons/arrow-left-circle.svg"
+      src="@/assets/weather/icons/arrow-left-circle.svg"
       alt="arrow left"
       class="arrow-icon"
       @click="moveBack"
@@ -38,7 +38,7 @@
     </div>
     <img
       v-if="cachedWeatherData.length > 1"
-      src="./../../assets/icons/arrow-right-circle.svg"
+      src="@/assets/weather/icons/arrow-right-circle.svg"
       alt="arrow right"
       class="arrow-icon"
       @click="moveForward"
@@ -64,6 +64,7 @@ import { useArrowNavigation } from './../../composables/useArrowNavigation';
 import CityNavigation from './CityNavigation.vue';
 import { getFromLocalStorage } from '@/utils/localStorage';
 import WeatherMainInfo from './WeatherMainInfo.vue';
+// import ArrowRightCircle from '@/assets/weather/icons/arrow-right-circle.svg';
 
 type Emits = {
   (e: 'handleToggleSettings'): void;

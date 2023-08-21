@@ -3,7 +3,7 @@
     <WidgetHeader>
       <div class="header-title">Settings</div>
       <img
-        src="@/modules/weather/assets/icons/close-white.svg"
+        src="@/assets/weather/icons/close-white.svg"
         alt="open settings menu"
         @click="handleToggleSettingsView"
       />
@@ -17,14 +17,14 @@
           @dragleave="handleDragleave"
           @dragover="handleDragover"
           @drop="handleDrop($event, city)"
-          src="@/modules/weather/assets/icons/hamburger-menu.svg"
+          src="@/assets/weather/icons/hamburger-menu.svg"
           alt="burger-menu"
           class="icon-burger-menu"
           :draggable="true"
         />
         {{ city.name }}
         <img
-          src="@/modules/weather/assets/icons/trash.svg"
+          src="@/assets/weather/icons/trash.svg"
           alt="trash-bin"
           @click="removeCity(city.name)"
           class="icon-trash-menu"
